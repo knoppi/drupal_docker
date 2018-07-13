@@ -28,7 +28,6 @@ WORKDIR /var/www/html/modules
 
 # Note to myself: Release information to the module can be found under
 # https://www.drupal.org/project/!!!!/releases
-# https://www.drupal.org/project/drush/releases
 
 # devel module
 #ENV url https://ftp.drupal.org/files/projects/devel-8.x-1.2.tar.gz
@@ -75,7 +74,7 @@ RUN curl -s -o $filename $url \
     && rm $filename
 
 
-# ctools module (f
+# ctools module
 #ENV url https://ftp.drupal.org/files/projects/ctools-8.x-3.0.tar.gz
 #ENV md5_sum a234f3c5b8565122c9d7e9898836cca5
 ENV url https://ftp.drupal.org/files/projects/ctools-7.x-1.14.tar.gz
