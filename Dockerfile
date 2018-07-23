@@ -15,7 +15,7 @@ RUN docker-php-ext-install mcrypt
 #ENV md5_sum f68995d21cfd09824bd6b8a652a6c9dd
 #ENV filename drupal-8.5.5.de.po
 ENV url https://ftp.drupal.org/files/translations/7.x/drupal/drupal-7.59.de.po
-ENV md5_sum 1d34944761762a68514c354dba755c2f
+ENV md5_sum 540f6716d756592147f4ac3e0eb20cc6
 ENV filename drupal-7.59.de.po
 
 WORKDIR /var/www/html/profiles/standard/translations
@@ -109,5 +109,21 @@ RUN chmod u+x drush/drush \
 
 #COPY settings.php /var/www/html/sites/default/
 #RUN cp /var/www/html/sites/default/default.settings.php /var/www/html/sites/default/settings.php
+
+WORKDIR /var/www/html/sites/default
+
+RUN sed 's+\$databases = array();+\$databases = array ( \
+    "default" => array ( \
+        "default" => array ( \
+            "database" => getenv("MYSQL_DATABASE"),  \
+            "username" => getenv("MYSQL_USER"),  \
+            "password" => getenv("MYSQL_PASSWORD"),  \
+            "host" => getenv("MYSQL_HOST"),  \
+            "port" => "",  \
+            "driver" => "mysql",  \
+            "prefix" => '',  \
+        ),  \
+    ),  \
+);+' default.settings.php > settings.php
 
 WORKDIR /var/www/html
