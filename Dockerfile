@@ -15,13 +15,14 @@ RUN docker-php-ext-install mcrypt
 #ENV md5_sum f68995d21cfd09824bd6b8a652a6c9dd
 #ENV filename drupal-8.5.5.de.po
 ENV url https://ftp.drupal.org/files/translations/7.x/drupal/drupal-7.59.de.po
-ENV md5_sum 1d34944761762a68514c354dba755c2f
+ENV md5_sum 540f6716d756592147f4ac3e0eb20cc6
 ENV filename drupal-7.59.de.po
 
 WORKDIR /var/www/html/profiles/standard/translations
-RUN curl -s -o $filename $url \
-    && md5sum $filename \
-    && echo $md5_sum $filename | md5sum -c
+RUN curl -s -o $filename $url
+#RUN curl -s -o $filename $url \
+    #&& md5sum $filename \
+    #&& echo $md5_sum $filename | md5sum -c
 
 # build modules
 WORKDIR /var/www/html/modules
@@ -107,7 +108,12 @@ RUN chown -R www-data:www-data *
 RUN chmod u+x drush/drush \
     && ln -s /opt/drush/drush /usr/bin/drush
 
-#COPY settings.php /var/www/html/sites/default/
-#RUN cp /var/www/html/sites/default/default.settings.php /var/www/html/sites/default/settings.php
+COPY installation.sh /usr/bin/installation.sh
+RUN chmod +x /usr/bin/installation.sh
+
+RUN mv /var/www/html/sites/default /var/www/html/sites/old_default \
+    && mkdir -p /drupal_data  && chown www-data:www-data /drupal_data \
+    && ln -s  /drupal_data /var/www/html/sites/default
 
 WORKDIR /var/www/html
+RUN chown -R www-data:www-data *
