@@ -6,6 +6,9 @@ set -x
 if [ ! -e /var/www/html/sites/default/settings.php ]
 then
 
+# wait - sql might still be spawning
+sleep 20
+
 # populate themes folder
 cp -R /bak/themes/* /var/www/html/themes/
 
@@ -19,6 +22,7 @@ pear install Console_Table
   --db-url="mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE}" \
   --account-name="admin" \
   --account-pass="${LDAP_PASSWD}" \
+  --site-name="${SITE_NAME}" \
   -v --debug
   #--locale="de" \
 

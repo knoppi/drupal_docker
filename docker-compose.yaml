@@ -27,3 +27,4 @@ services:
       MYSQL_DATABASE: drupal
       MYSQL_HOST: db
       LDAP_PASSWD: supergeheim
+      SITE_NAME: drupal testing

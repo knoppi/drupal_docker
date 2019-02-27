@@ -69,15 +69,12 @@ RUN curl -s -o module.tar.gz $url \
 RUN chmod u+x drush/drush \
     && ln -s /opt/drush/drush /usr/bin/drush
 
-# ab hier unsicher
 RUN chown -R www-data:www-data /opt /var/www/html
 
 # create a backup of the image contents of specific folders
 WORKDIR /bak
-RUN mv /var/www/html/sites ./ && \
-  mv /var/www/html/themes ./
+RUN mv /var/www/html/sites /var/www/html/themes ./
 
-# hier wieder korrekt
 WORKDIR /var/www/html/
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
