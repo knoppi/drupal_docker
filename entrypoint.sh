@@ -31,35 +31,35 @@ chmod -R a+w /var/www/html/sites/default/files
 # setup the LDAP server
 /opt/drush/drush -y pm-enable ldap_servers ldap_user
 
-# setup of the smtp configuration still included
+# setup of the smtp configuration
 # at a later point this will be more modular if
 # you want to use something else like an
 # individual mailer container
-#/opt/drush/drush -y pm-enable smtp
-#
-#/opt/drush/rush vset --exact smtp_allowhtml 0
-#/opt/drush/rush vset --exact smtp_client_helo ""
-#/opt/drush/rush vset --exact smtp_debugging "2"
-#/opt/drush/rush vset --exact smtp_deliver "1"
-#/opt/drush/rush vset --exact smtp_hostbackup ""
-#/opt/drush/rush vset --exact smtp_on "1"
-#/opt/drush/rush vset --exact smtp_previous_mail_system "DefaultMailSystem"
-#/opt/drush/rush vset --exact smtp_protocol "standard"
-#/opt/drush/rush vset --exact smtp_queue 1
-#/opt/drush/rush vset --exact smtp_queue_fail 1
-#/opt/drush/rush vset --exact smtp_reroute_address ""
-#/opt/drush/rush vset --exact smtp_protocol "ssl"
-#
-#/opt/drush/drush vset --exact smtp_client_hostname $smtp_client_hostname
-#/opt/drush/drush vset --exact smtp_from            $smtp_from
-#/opt/drush/drush vset --exact smtp_fromname        $smtp_fromname 
-#/opt/drush/drush vset --exact smtp_host            $smtp_host 
-#/opt/drush/drush vset --exact smtp_username        $smtp_username 
-#/opt/drush/drush vset --exact smtp_password        $smtp_password 
-#/opt/drush/drush vset --exact smtp_port            $smtp_port 
-#
-#/opt/drush/echo "\$conf['drupal_http_request_fails'] = FALSE;" >> /drupal_data/settings.php
-#/opt/drush/echo "\$conf['mail_system']['default-system'] = 'SmtpMailSystem';" >> /drupal_data/settings.php
+/opt/drush/drush -y pm-enable smtp
+
+/opt/drush/drush vset --exact smtp_allowhtml 0
+/opt/drush/drush vset --exact smtp_client_helo ""
+/opt/drush/drush vset --exact smtp_debugging "2"
+/opt/drush/drush vset --exact smtp_deliver "1"
+/opt/drush/drush vset --exact smtp_hostbackup ""
+/opt/drush/drush vset --exact smtp_on "1"
+/opt/drush/drush vset --exact smtp_previous_mail_system "DefaultMailSystem"
+/opt/drush/drush vset --exact smtp_protocol "standard"
+/opt/drush/drush vset --exact smtp_queue 1
+/opt/drush/drush vset --exact smtp_queue_fail 1
+/opt/drush/drush vset --exact smtp_reroute_address ""
+/opt/drush/drush vset --exact smtp_protocol "ssl"
+
+/opt/drush/drush vset --exact smtp_client_hostname $smtp_client_hostname
+/opt/drush/drush vset --exact smtp_from            $smtp_from
+/opt/drush/drush vset --exact smtp_fromname        $smtp_fromname 
+/opt/drush/drush vset --exact smtp_host            $smtp_host 
+/opt/drush/drush vset --exact smtp_username        $smtp_username 
+/opt/drush/drush vset --exact smtp_password        $smtp_password 
+/opt/drush/drush vset --exact smtp_port            $smtp_port 
+
+/opt/drush/echo "\$conf['drupal_http_request_fails'] = FALSE;" >> /drupal_data/settings.php
+/opt/drush/echo "\$conf['mail_system']['default-system'] = 'SmtpMailSystem';" >> /drupal_data/settings.php
 
 fi
 
