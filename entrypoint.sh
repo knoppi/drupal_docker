@@ -29,7 +29,7 @@ pear install Console_Table
 chmod -R a+w /var/www/html/sites/default/files
 
 # setup the LDAP server
-/opt/drush/drush -y pm-enable ldap_servers ldap_user
+/opt/drush/drush -y pm-enable ldap_servers ldap_user ldap_authentication
 
 # setup of the smtp configuration
 # at a later point this will be more modular if
