@@ -7,7 +7,7 @@ if [ ! -e /var/www/html/sites/default/settings.php ]
 then
 
 # wait - sql might still be spawning
-sleep 20
+sleep 40
 
 # populate themes folder
 cp -R /bak/themes/* /var/www/html/themes/
