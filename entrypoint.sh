@@ -28,6 +28,15 @@ pear install Console_Table
 
 chmod -R a+w /var/www/html/sites/default/files
 
+# this setup is meant to reside behind a reverse proxy, so unless explicitely turned off
+# this script tweaks the drupal settings for that case
+if [ -z "$NO_PROXY" ]
+then
+  NEW_VALUE="\$conf['reverse_proxy'] = 1;\n\$_SERVER['HTTPS'] = 'on';"
+  sed -i "s/# \$conf\['reverse_proxy'\].*$/${NEW_VALUE}/" /var/www/html/sites/default/settings.php
+fi
+
+
 # setup the LDAP server
 /opt/drush/drush -y pm-enable ldap_servers ldap_user ldap_authentication
 
