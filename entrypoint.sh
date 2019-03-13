@@ -67,8 +67,8 @@ fi
 /opt/drush/drush vset --exact smtp_password        $smtp_password 
 /opt/drush/drush vset --exact smtp_port            $smtp_port 
 
-/opt/drush/echo "\$conf['drupal_http_request_fails'] = FALSE;" >> /drupal_data/settings.php
-/opt/drush/echo "\$conf['mail_system']['default-system'] = 'SmtpMailSystem';" >> /drupal_data/settings.php
+echo "\$conf['drupal_http_request_fails'] = FALSE;" >> /var/www/html/sites/default/settings.php
+echo "\$conf['mail_system']['default-system'] = 'SmtpMailSystem';" >> /var/www/html/sites/default/settings.php
 
 fi
 
